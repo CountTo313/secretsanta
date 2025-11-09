@@ -8,7 +8,8 @@ family = {  # name of family member, list of anyone that should be excluded from
     'Tuff Genius': ['Insane Madman'],
     'Insane Madman': ['Tuff Genius'],
     'Irate Watcher': [],
-    'Respected Watcher': [],
+    'Respected Watcher': ['Thunderous Leader'],
+    'Thunderous Leader': ['Respected Watcher'],
     'X-pert Samurai': []
 }
 
@@ -16,7 +17,7 @@ secretSanta = dict()
 names = list(family.keys())
 shuffled = deepcopy(names)
 
-for _ in range(1000):
+for iteration in range(1000):
     random.shuffle(shuffled)
     # Traverse givers & receivers with `itertools.pairwise`.
     for giver, receiver in zip(names, shuffled):
@@ -26,6 +27,7 @@ for _ in range(1000):
         else:
             secretSanta[giver] = receiver
     else:
+        print(f"Solved in {iteration} iterations")
         break
 
 if secretSanta:
